@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7p8a56u6xo6t"]
+
+[ext_resource type="FontFile" uid="uid://cywe7nshn15ak" path="res://fonts/Goodvibe.otf" id="1_j4wsp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3o82r"]
+albedo_color = Color(0.862806, 0, 0.452012, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_fo10a"]
+material = SubResource("StandardMaterial3D_3o82r")
+text = "test"
+font = ExtResource("1_j4wsp")
+
+[node name="test_for_scene_transitions" type="SubViewportContainer"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.57388)
+mesh = SubResource("TextMesh_fo10a")

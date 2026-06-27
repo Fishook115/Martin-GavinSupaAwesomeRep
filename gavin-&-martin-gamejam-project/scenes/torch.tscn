@@ -1,0 +1,89 @@
+[gd_scene load_steps=16 format=3 uid="uid://fwevs27lf7pp"]
+
+[ext_resource type="Shader" uid="uid://nlv1vns0j7n7" path="res://shaders/cooler_fire.gdshader" id="1_d4v33"]
+[ext_resource type="Script" uid="uid://xm0ujskgvxgt" path="res://scripts/torch.gd" id="1_my26j"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d4v33"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_my26j"]
+noise = SubResource("FastNoiseLite_d4v33")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o2tjn"]
+metallic = 1.0
+roughness_texture = SubResource("NoiseTexture2D_my26j")
+
+[sub_resource type="BoxMesh" id="BoxMesh_r3k50"]
+material = SubResource("StandardMaterial3D_o2tjn")
+size = Vector3(0.4, 0.4, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ndh0a"]
+metallic = 1.0
+roughness_texture = SubResource("NoiseTexture2D_my26j")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ktql7"]
+material = SubResource("StandardMaterial3D_ndh0a")
+top_radius = 0.775
+bottom_radius = 0.485
+height = 1.095
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gybtl"]
+metallic = 1.0
+roughness_texture = SubResource("NoiseTexture2D_my26j")
+
+[sub_resource type="TorusMesh" id="TorusMesh_21l5o"]
+material = SubResource("StandardMaterial3D_gybtl")
+outer_radius = 0.792
+
+[sub_resource type="Curve" id="Curve_d4v33"]
+_data = [Vector2(0, 0.10795), 0.0, 0.0, 0, 0, Vector2(0.0154967, 0.243933), 0.0, 0.0, 0, 0, Vector2(0.0420354, 0.325523), 0.0, 0.0, 0, 0, Vector2(0.0774336, 0.379916), 0.0, 0.0, 0, 0, Vector2(0.413717, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.532218), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jk1qb"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5dd4i"]
+noise = SubResource("FastNoiseLite_jk1qb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lgwnu"]
+render_priority = 0
+shader = ExtResource("1_d4v33")
+shader_parameter/time_speed = 1.0
+shader_parameter/spin = 0.0
+shader_parameter/flame_brightness = 0.6
+shader_parameter/color_intensity = 0.0
+shader_parameter/horizontal_frequency = 1.0
+shader_parameter/vertical_frequency = 1.0
+shader_parameter/size = -0.3
+shader_parameter/core_size = 1.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_5dd4i")
+shader_parameter/color1 = Color(0.603438, 0.123114, 2.88785e-07, 1)
+shader_parameter/color2 = Color(0.309402, 0.0235498, 0.0269946, 1)
+shader_parameter/color3 = Color(1, 0.47228, 0.453613, 1)
+shader_parameter/color4 = Color(0.968166, 0.312141, 0, 1)
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_my26j"]
+material = SubResource("ShaderMaterial_lgwnu")
+radius = 0.69
+radial_steps = 30
+section_length = 0.45
+curve = SubResource("Curve_d4v33")
+
+[node name="torch" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_r3k50")
+script = ExtResource("1_my26j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.287008, 0.679871)
+mesh = SubResource("CylinderMesh_ktql7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.564587, 0)
+mesh = SubResource("TorusMesh_21l5o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98322, 0)
+mesh = SubResource("TubeTrailMesh_my26j")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D/MeshInstance3D/MeshInstance3D"]
+light_color = Color(0.899247, 0.35066, 0.396295, 1)
+light_energy = 4.0
+omni_range = 4.981

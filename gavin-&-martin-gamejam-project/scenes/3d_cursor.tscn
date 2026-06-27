@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3d6714s0kco8"]
+
+[ext_resource type="Script" uid="uid://d1jdywww5lfum" path="res://scripts/3d_cursor.gd" id="1_cwbfn"]
+[ext_resource type="Shader" uid="uid://cflgfp2867l1a" path="res://shaders/hologram.gdshader" id="1_e647e"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cwbfn"]
+radius = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jwyr4"]
+render_priority = 0
+shader = ExtResource("1_e647e")
+shader_parameter/primary_color = Color(0.967771, 0, 0.463012, 1)
+shader_parameter/secondary_color = Color(1, 0, 0, 1)
+shader_parameter/density = 1.0
+shader_parameter/effect_strength = 2.0
+shader_parameter/wipe_scale = 0.0
+shader_parameter/wipe_speed = 0.5
+shader_parameter/wipe_blend = 0.7
+shader_parameter/signal_scale = 0.0
+shader_parameter/signal_speed = 1.0
+shader_parameter/signal_random_scale = 0.3
+shader_parameter/signal_blend = 1.0
+shader_parameter/noise_distort_amount = 0.1
+shader_parameter/noise_amount = 1.0
+shader_parameter/grain_amount = 0.4
+shader_parameter/displacement_amount = 0.4
+shader_parameter/displacement_speed = 16.74
+shader_parameter/flicker_amount = 1.0
+shader_parameter/flicker_speed = 2.64
+
+[sub_resource type="SphereMesh" id="SphereMesh_7sl3i"]
+material = SubResource("ShaderMaterial_jwyr4")
+radius = 0.25
+height = 0.5
+
+[node name="3d_cursor" type="Area3D"]
+script = ExtResource("1_cwbfn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_cwbfn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_7sl3i")

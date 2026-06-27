@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d21yqk758lylp"
+path="res://.godot/imported/Mewgenics - The Alley - Eatin' Rats (Boss, No Intro).wav-b60a8fac76a827de72e84c78c232e990.sample"
+
+[deps]
+
+source_file="res://music/Mewgenics - The Alley - Eatin' Rats (Boss, No Intro).wav"
+dest_files=["res://.godot/imported/Mewgenics - The Alley - Eatin' Rats (Boss, No Intro).wav-b60a8fac76a827de72e84c78c232e990.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

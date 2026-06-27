@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://itsff1u7foq6"
+path="res://.godot/imported/Mewgenics - The Throbbing Domain - Sweet Delicious (Boss).wav-98e8658d03c1c52577dd087edf3a00fe.sample"
+
+[deps]
+
+source_file="res://music/Mewgenics - The Throbbing Domain - Sweet Delicious (Boss).wav"
+dest_files=["res://.godot/imported/Mewgenics - The Throbbing Domain - Sweet Delicious (Boss).wav-98e8658d03c1c52577dd087edf3a00fe.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

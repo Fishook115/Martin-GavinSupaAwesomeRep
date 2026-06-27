@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://h1vaeo40871w"]
+
+[ext_resource type="Script" uid="uid://y7csmul76n2k" path="res://scripts/main_permanent_viewport.gd" id="1_6gmlw"]
+[ext_resource type="PackedScene" uid="uid://bdcm2hvb6uoa2" path="res://scenes/main_menu.tscn" id="1_lvjd0"]
+[ext_resource type="PackedScene" uid="uid://cji7ksubw8ld3" path="res://scenes/pause_menu.tscn" id="2_vn08w"]
+[ext_resource type="AudioStream" uid="uid://itsff1u7foq6" path="res://music/Mewgenics - The Throbbing Domain - Sweet Delicious (Boss).wav" id="2_yhdfc"]
+[ext_resource type="Script" uid="uid://ca4wi3r4upiau" path="res://scripts/music.gd" id="4_1eo17"]
+
+[node name="main_permanent_viewport" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_6gmlw")
+
+[node name="pausable" type="Node2D" parent="."]
+process_mode = 1
+
+[node name="main_menu" parent="pausable" instance=ExtResource("1_lvjd0")]
+
+[node name="music" type="AudioStreamPlayer" parent="pausable"]
+stream = ExtResource("2_yhdfc")
+autoplay = true
+bus = &"music"
+script = ExtResource("4_1eo17")
+
+[node name="pause_menu" parent="." instance=ExtResource("2_vn08w")]
+process_mode = 2

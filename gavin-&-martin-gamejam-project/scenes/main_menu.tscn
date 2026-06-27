@@ -1,0 +1,100 @@
+[gd_scene load_steps=20 format=3 uid="uid://bdcm2hvb6uoa2"]
+
+[ext_resource type="Script" uid="uid://bc7nsjmxi6123" path="res://scripts/3d_button.gd" id="1_bqqt6"]
+[ext_resource type="Script" uid="uid://lp11towmauyt" path="res://scripts/main_menu.gd" id="1_oa1go"]
+[ext_resource type="FontFile" uid="uid://yt7c0k4tw61m" path="res://fonts/Reblade-Regular.otf" id="2_wu84c"]
+[ext_resource type="Material" path="res://materials/weird_beehive.tres" id="3_8ln24"]
+[ext_resource type="PackedScene" uid="uid://b7p8a56u6xo6t" path="res://scenes/test_for_scene_transitions.tscn" id="3_rtw2f"]
+[ext_resource type="PackedScene" uid="uid://fwevs27lf7pp" path="res://scenes/torch.tscn" id="3_wu84c"]
+[ext_resource type="PackedScene" uid="uid://c3d6714s0kco8" path="res://scenes/3d_cursor.tscn" id="4_wu84c"]
+[ext_resource type="FontFile" uid="uid://cpgr6hoyofi1b" path="res://fonts/Maytorm-Regular.ttf" id="7_tbmy8"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rtw2f"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oa1go"]
+noise = SubResource("FastNoiseLite_rtw2f")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbmy8"]
+metallic = 1.0
+roughness_texture = SubResource("NoiseTexture2D_oa1go")
+
+[sub_resource type="BoxMesh" id="BoxMesh_8ln24"]
+material = SubResource("StandardMaterial3D_tbmy8")
+size = Vector3(2.88, 0.755, 0.185)
+
+[sub_resource type="TextMesh" id="TextMesh_wu84c"]
+material = SubResource("StandardMaterial3D_tbmy8")
+text = "START"
+font = ExtResource("2_wu84c")
+font_size = 61
+
+[sub_resource type="QuadMesh" id="QuadMesh_rtw2f"]
+material = ExtResource("3_8ln24")
+size = Vector2(21, 21)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_rtw2f"]
+data = PackedVector3Array(10.5, -10.5, 0, -10.5, -10.5, 0, 10.5, 10.5, 0, -10.5, -10.5, 0, -10.5, 10.5, 0, 10.5, 10.5, 0)
+
+[sub_resource type="TextMesh" id="TextMesh_tbmy8"]
+material = SubResource("StandardMaterial3D_tbmy8")
+text = "CHAIN GAME"
+font = ExtResource("7_tbmy8")
+font_size = 127
+pixel_size = 0.006
+
+[sub_resource type="Environment" id="Environment_jk1qb"]
+ambient_light_source = 2
+tonemap_mode = 3
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_5dd4i"]
+
+[sub_resource type="Compositor" id="Compositor_lgwnu"]
+
+[node name="main_menu" type="SubViewportContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_oa1go")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="3d_cursor" parent="SubViewport" instance=ExtResource("4_wu84c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.789113)
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.579461, -2.65135)
+mesh = SubResource("BoxMesh_8ln24")
+script = ExtResource("1_bqqt6")
+area_to_select = ExtResource("3_rtw2f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/MeshInstance3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.254465)
+mesh = SubResource("TextMesh_wu84c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.20041)
+mesh = SubResource("QuadMesh_rtw2f")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_rtw2f")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+
+[node name="title" type="MeshInstance3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.671659, -1.97678)
+mesh = SubResource("TextMesh_tbmy8")
+
+[node name="torch" parent="SubViewport" instance=ExtResource("3_wu84c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23815, -1.50675, -2.47883)
+
+[node name="torch2" parent="SubViewport" instance=ExtResource("3_wu84c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.238, -1.50633, -2.479)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport"]
+environment = SubResource("Environment_jk1qb")
+camera_attributes = SubResource("CameraAttributesPractical_5dd4i")
+compositor = SubResource("Compositor_lgwnu")
