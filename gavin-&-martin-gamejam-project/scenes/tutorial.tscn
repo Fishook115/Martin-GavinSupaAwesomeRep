@@ -1,0 +1,129 @@
+[gd_scene load_steps=19 format=3 uid="uid://dtsbsys56y5um"]
+
+[ext_resource type="PackedScene" uid="uid://c4yptsln6xm0o" path="res://scenes/player.tscn" id="1_c13y7"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_c13y7"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8ho6b"]
+noise = SubResource("FastNoiseLite_c13y7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ph3nu"]
+metallic = 1.0
+roughness_texture = SubResource("NoiseTexture2D_8ho6b")
+
+[sub_resource type="QuadMesh" id="QuadMesh_4kmhl"]
+material = SubResource("StandardMaterial3D_ph3nu")
+size = Vector2(40, 40)
+orientation = 1
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_c13y7"]
+data = PackedVector3Array(20, 0, 20, -20, 0, 20, 20, 0, -20, -20, 0, 20, -20, 0, -20, 20, 0, -20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cq4me"]
+metallic = 1.0
+roughness_texture = SubResource("NoiseTexture2D_8ho6b")
+
+[sub_resource type="QuadMesh" id="QuadMesh_6yjpi"]
+material = SubResource("StandardMaterial3D_cq4me")
+size = Vector2(40, 40)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8ho6b"]
+data = PackedVector3Array(20, -20, 0, -20, -20, 0, 20, 20, 0, -20, -20, 0, -20, 20, 0, 20, 20, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gbqnl"]
+metallic = 1.0
+roughness_texture = SubResource("NoiseTexture2D_8ho6b")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ckvwl"]
+material = SubResource("StandardMaterial3D_gbqnl")
+size = Vector2(40, 40)
+orientation = 0
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ph3nu"]
+data = PackedVector3Array(0, -20, -20, 0, -20, 20, 0, 20, -20, 0, -20, 20, 0, 20, 20, 0, 20, -20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nlqja"]
+metallic = 1.0
+roughness_texture = SubResource("NoiseTexture2D_8ho6b")
+
+[sub_resource type="QuadMesh" id="QuadMesh_0epgs"]
+material = SubResource("StandardMaterial3D_nlqja")
+size = Vector2(40, 40)
+orientation = 0
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4kmhl"]
+data = PackedVector3Array(0, -20, -20, 0, -20, 20, 0, 20, -20, 0, -20, 20, 0, 20, 20, 0, 20, -20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2equ"]
+metallic = 1.0
+roughness_texture = SubResource("NoiseTexture2D_8ho6b")
+
+[sub_resource type="QuadMesh" id="QuadMesh_tbcdj"]
+material = SubResource("StandardMaterial3D_g2equ")
+size = Vector2(40, 40)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_cq4me"]
+data = PackedVector3Array(20, -20, 0, -20, -20, 0, 20, 20, 0, -20, -20, 0, -20, 20, 0, 20, 20, 0)
+
+[node name="tutorial" type="SubViewportContainer"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="player" parent="SubViewport" instance=ExtResource("1_c13y7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.63344, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport"]
+mesh = SubResource("QuadMesh_4kmhl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_c13y7")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0386386, 16.8612, -19.3853)
+mesh = SubResource("QuadMesh_6yjpi")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_8ho6b")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.9359, 18.08, 0)
+mesh = SubResource("QuadMesh_ckvwl")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/MeshInstance3D3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ph3nu")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="SubViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 18.8764, 17.8283, 0)
+mesh = SubResource("QuadMesh_0epgs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport/MeshInstance3D4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/MeshInstance3D4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_4kmhl")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="SubViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 17.977, 19.0491)
+mesh = SubResource("QuadMesh_tbcdj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport/MeshInstance3D5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/MeshInstance3D5/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_cq4me")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.818291, 32.8276, 0)
+light_energy = 16.0
+spot_range = 59.0017
+spot_attenuation = -0.5
+spot_angle = 18.0881

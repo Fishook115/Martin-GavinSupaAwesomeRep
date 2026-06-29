@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b7p8a56u6xo6t" path="res://scenes/test_for_scene_transitions.tscn" id="3_rtw2f"]
 [ext_resource type="PackedScene" uid="uid://fwevs27lf7pp" path="res://scenes/torch.tscn" id="3_wu84c"]
 [ext_resource type="PackedScene" uid="uid://c3d6714s0kco8" path="res://scenes/3d_cursor.tscn" id="4_wu84c"]
+[ext_resource type="PackedScene" uid="uid://dtsbsys56y5um" path="res://scenes/tutorial.tscn" id="6_jk1qb"]
 [ext_resource type="FontFile" uid="uid://cpgr6hoyofi1b" path="res://fonts/Maytorm-Regular.ttf" id="7_tbmy8"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rtw2f"]
@@ -28,6 +29,16 @@ text = "START"
 font = ExtResource("2_wu84c")
 font_size = 61
 
+[sub_resource type="BoxMesh" id="BoxMesh_tbmy8"]
+material = SubResource("StandardMaterial3D_tbmy8")
+size = Vector3(2.88, 0.755, 0.185)
+
+[sub_resource type="TextMesh" id="TextMesh_jk1qb"]
+material = SubResource("StandardMaterial3D_tbmy8")
+text = "TUTORIAL"
+font = ExtResource("2_wu84c")
+font_size = 61
+
 [sub_resource type="QuadMesh" id="QuadMesh_rtw2f"]
 material = ExtResource("3_8ln24")
 size = Vector2(21, 21)
@@ -41,14 +52,6 @@ text = "CHAIN GAME"
 font = ExtResource("7_tbmy8")
 font_size = 127
 pixel_size = 0.006
-
-[sub_resource type="Environment" id="Environment_jk1qb"]
-ambient_light_source = 2
-tonemap_mode = 3
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_5dd4i"]
-
-[sub_resource type="Compositor" id="Compositor_lgwnu"]
 
 [node name="main_menu" type="SubViewportContainer"]
 offset_right = 40.0
@@ -64,7 +67,7 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.789113)
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.579461, -2.65135)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.272353, -2.65135)
 mesh = SubResource("BoxMesh_8ln24")
 script = ExtResource("1_bqqt6")
 area_to_select = ExtResource("3_rtw2f")
@@ -72,6 +75,16 @@ area_to_select = ExtResource("3_rtw2f")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/MeshInstance3D4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.254465)
 mesh = SubResource("TextMesh_wu84c")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.16182, -2.65135)
+mesh = SubResource("BoxMesh_tbmy8")
+script = ExtResource("1_bqqt6")
+area_to_select = ExtResource("6_jk1qb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/MeshInstance3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.254465)
+mesh = SubResource("TextMesh_jk1qb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.20041)
@@ -93,8 +106,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23815, -1.50675, -2.47883)
 
 [node name="torch2" parent="SubViewport" instance=ExtResource("3_wu84c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.238, -1.50633, -2.479)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport"]
-environment = SubResource("Environment_jk1qb")
-camera_attributes = SubResource("CameraAttributesPractical_5dd4i")
-compositor = SubResource("Compositor_lgwnu")

@@ -14,6 +14,7 @@
 extends MeshInstance3D
 
 @onready var light : OmniLight3D = $MeshInstance3D/MeshInstance3D/MeshInstance3D/OmniLight3D
+@export var frequency_range : Vector2 = Vector2(0, 4000)
 
 var smoothing: float = 4
 
@@ -35,7 +36,7 @@ func _process(delta):
 	var magnitude2d = spectrum.get_magnitude_for_frequency_range(500, 3000)
 	
 	# Calculate the overall volume level (combining left and right channels)
-	var volume = (magnitude2d.x + magnitude2d.y) / 2.0
+	var volume = magnitude2d.length()
 	print(volume)
 	# Amplify the volume since it usually returns a very small float
 	
