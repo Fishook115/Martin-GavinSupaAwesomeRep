@@ -8,6 +8,11 @@
 
 config_version=5
 
+[addons]
+
+curved_lines_2d/stroke_color=Color(0, 0, 0, 1)
+curved_lines_2d/fill_color=Color(1, 0.988098, 0.238281, 0.376471)
+
 [application]
 
 config/name="Gavin & Martin Gamejam Project"
@@ -23,6 +28,10 @@ Global="*res://scripts/global.gd"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=2
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/curved_lines_2d/plugin.cfg")
 
 [file_customization]
 

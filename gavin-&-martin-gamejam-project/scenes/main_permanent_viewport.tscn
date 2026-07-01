@@ -33,7 +33,6 @@ bus = &"music"
 script = ExtResource("4_1eo17")
 
 [node name="pause_menu" parent="." instance=ExtResource("2_vn08w")]
-process_mode = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1eo17")
