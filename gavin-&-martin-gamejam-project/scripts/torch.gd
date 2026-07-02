@@ -37,7 +37,7 @@ func _process(delta):
 	
 	# Calculate the overall volume level (combining left and right channels)
 	var volume = magnitude2d.length()
-	print(volume)
+	#print(volume)
 	# Amplify the volume since it usually returns a very small float
 	
 	

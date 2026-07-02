@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dtsbsys56y5um"]
+[gd_scene load_steps=16 format=3 uid="uid://dtsbsys56y5um"]
 
 [ext_resource type="PackedScene" uid="uid://c4yptsln6xm0o" path="res://scenes/player.tscn" id="1_c13y7"]
 [ext_resource type="FontFile" uid="uid://x5dpmhwmk3tm" path="res://fonts/DirtyEnough-Regular.ttf" id="2_8ho6b"]
+[ext_resource type="PackedScene" uid="uid://cwvujpmbg3t6o" path="res://scenes/dummy.tscn" id="3_ph3nu"]
 
 [sub_resource type="Gradient" id="Gradient_c13y7"]
 colors = PackedColorArray(0.310617, 0.310617, 0.310617, 1, 1, 1, 1, 1)
@@ -147,3 +148,6 @@ mesh = SubResource("BoxMesh_ph3nu")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.795135)
 mesh = SubResource("TextMesh_cq4me")
+
+[node name="dummy" parent="SubViewport" instance=ExtResource("3_ph3nu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.6439, 1.85831, 0)

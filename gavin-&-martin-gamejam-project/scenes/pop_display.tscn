@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://4honnxdlnlmy"]
+
+[ext_resource type="FontFile" uid="uid://cpgr6hoyofi1b" path="res://fonts/Maytorm-Regular.ttf" id="1_rcwl7"]
+[ext_resource type="Script" uid="uid://pqba36qgm2w2" path="res://scripts/pop_display.gd" id="2_oqtyv"]
+
+[node name="pop_display" type="Label3D"]
+pixel_size = 0.05
+billboard = 1
+text = "4 (10)"
+font = ExtResource("1_rcwl7")
+script = ExtResource("2_oqtyv")

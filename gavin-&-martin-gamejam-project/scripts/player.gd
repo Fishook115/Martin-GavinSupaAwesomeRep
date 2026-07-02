@@ -3,16 +3,17 @@ extends CharacterBody3D
 @export var speed : float = 10.0
 @export var acceleration : float = 2.0
 @export var jump_velocity : float = 4.5
+@export var gun_damage : float = 3.0
 var rot_x = 0
 var rot_y = 0
-var sensitivity : float = 0.02
+var sensitivity : float = 0.005
 var pivot_point
 var direction
 var can_shoot : bool = true
 @onready var camera_pivoting_point = $camera_pivoting_point
 @onready var camera : Camera3D = $camera_pivoting_point/Camera3D
 @onready var camera_ray : SpringArm3D = $camera_pivoting_point/Camera3D/SpringArm3D
-@onready var gun_ray : RayCast3D = $camera_pivoting_point/gun_aiming_pivoting_point/gun_animation_pivoting_point/gun_body/RayCast3D
+@onready var gun_area : Area3D = $camera_pivoting_point/Camera3D/gun_area
 @onready var three_d_player : AnimationPlayer = $"3dplayer"
 @onready var gun_shot : AudioStreamPlayer3D = $camera_pivoting_point/gun_aiming_pivoting_point/gun_animation_pivoting_point/gun_end/gun_shot
 @onready var gun_aiming_pivoting_point : Node3D = $camera_pivoting_point/gun_aiming_pivoting_point
@@ -69,7 +70,6 @@ func _movement_logic(delta):
 
 func _gun_logic(delta):
 	gun_aiming_pivoting_point.look_at(spring_hit_object.global_position)
-	print()
 	if Input.is_action_pressed("primary_mouse"):
 		camera.fov = lerp(camera.fov, 45.0, delta * 3)
 	else:
@@ -78,8 +78,15 @@ func _gun_logic(delta):
 	if Input.is_action_just_released("primary_mouse") and can_shoot:
 		gun_shot.play()
 		three_d_player.play("shoot")
+		if gun_area.has_overlapping_bodies():
+			for body in gun_area.get_overlapping_bodies():
+				print("hit: ", body.name)
+				body.new_health -= gun_damage
 		can_shoot = false
 
+	if Input.is_action_pressed("secondary_mouse"):
+		#WORK ON THIS
+		pass
 func _chain_logic(delta):
 	pass
 
